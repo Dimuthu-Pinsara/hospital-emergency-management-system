@@ -24,5 +24,19 @@ public class Main {
 		patient.getVisitHistory().addVisit(new Visit("V001", "2026-09-05",
 				"Dr. Fernando", "Chest pain", "ECG and medication"));
 		patient.getVisitHistory().display();
+
+		System.out.println("\n6. Complete treatment and push record onto stack");
+		hospital.treatNextPatient();
+		hospital.completeTreatment(1005, "Dr. Fernando",
+				"ECG and medication", "2026-09-05");
+
+		System.out.println("\n7. Display treatment history (top first)");
+		hospital.displayTreatmentHistory();
+
+		System.out.println("\n8. Pop the most recently completed treatment");
+		hospital.removeLatestTreatment();
+
+		System.out.println("\n9. Display treatment history after pop");
+		hospital.displayTreatmentHistory();
 	}
 }
