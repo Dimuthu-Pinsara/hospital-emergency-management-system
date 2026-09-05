@@ -11,6 +11,10 @@ public class HospitalSystem {
 		return patientRecords.search(patientId);
 	}
 
+	public boolean deletePatient(int patientId) {
+		return patientRecords.delete(patientId);
+	}
+
 	public void displayPatients() {
 		patientRecords.displayInOrder();
 	}

@@ -1,6 +1,6 @@
 public class PatientBST {
 	private static class Node {
-		private final Patient patient;
+		private Patient patient;
 		private Node left;
 		private Node right;
 
@@ -47,6 +47,42 @@ public class PatientBST {
 					? current.left : current.right;
 		}
 		return null;
+	}
+
+	public boolean delete(int patientId) {
+		if (search(patientId) == null) {
+			return false;
+		}
+		root = delete(root, patientId);
+		return true;
+	}
+
+	private Node delete(Node node, int patientId) {
+		if (node == null) {
+			return null;
+		}
+		if (patientId < node.patient.getPatientId()) {
+			node.left = delete(node.left, patientId);
+			return node;
+		}
+		if (patientId > node.patient.getPatientId()) {
+			node.right = delete(node.right, patientId);
+			return node;
+		}
+		if (node.left == null) {
+			return node.right;
+		}
+		if (node.right == null) {
+			return node.left;
+		}
+
+		Node successor = node.right;
+		while (successor.left != null) {
+			successor = successor.left;
+		}
+		node.patient = successor.patient;
+		node.right = delete(node.right, successor.patient.getPatientId());
+		return node;
 	}
 
 	public void displayInOrder() {
