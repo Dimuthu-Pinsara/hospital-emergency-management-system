@@ -66,4 +66,33 @@ public class HospitalSystem {
 	public void displayTreatmentHistory() {
 		treatmentHistory.display();
 	}
+
+	public boolean addPatientVisit(int patientId, Visit visit) {
+		Patient patient = searchPatient(patientId);
+		if (patient == null) {
+			System.out.println("Patient not found.");
+			return false;
+		}
+		patient.getVisitHistory().addVisit(visit);
+		return true;
+	}
+
+	public Visit searchPatientVisit(int patientId, String visitId) {
+		Patient patient = searchPatient(patientId);
+		return patient == null ? null : patient.getVisitHistory().searchVisit(visitId);
+	}
+
+	public boolean removePatientVisit(int patientId, String visitId) {
+		Patient patient = searchPatient(patientId);
+		return patient != null && patient.getVisitHistory().removeVisit(visitId);
+	}
+
+	public void displayPatientVisits(int patientId) {
+		Patient patient = searchPatient(patientId);
+		if (patient == null) {
+			System.out.println("Patient not found.");
+			return;
+		}
+		patient.getVisitHistory().display();
+	}
 }

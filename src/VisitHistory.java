@@ -34,6 +34,26 @@ public class VisitHistory {
 		return null;
 	}
 
+	public boolean removeVisit(String visitId) {
+		if (head == null) {
+			return false;
+		}
+		if (head.visit.getVisitId().equals(visitId)) {
+			head = head.next;
+			return true;
+		}
+
+		Node current = head;
+		while (current.next != null) {
+			if (current.next.visit.getVisitId().equals(visitId)) {
+				current.next = current.next.next;
+				return true;
+			}
+			current = current.next;
+		}
+		return false;
+	}
+
 	public void display() {
 		if (head == null) {
 			System.out.println("No previous visits found.");
